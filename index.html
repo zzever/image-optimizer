@@ -47,6 +47,14 @@
         <p class="hint" id="formatHint">SVG, PNG, JPG, WebP — máx. 20 MB</p>
         <input type="file" id="fileInput" accept="image/*,.svg" hidden />
       </div>
+
+      <div class="upload-status" id="uploadStatus" hidden aria-live="polite">
+        <div class="upload-feedback" id="uploadFeedback"></div>
+        <label class="upload-progress-label" for="uploadProgress">Cargando archivo</label>
+        <progress id="uploadProgress" max="100" value="0"></progress>
+        <span id="uploadProgressText">0%</span>
+      </div>
+
       <div class="preview-wrap" id="previewWrap" hidden>
         <img id="previewImg" alt="Vista previa" />
         <div class="file-meta" id="fileMeta"></div>
@@ -115,7 +123,7 @@
           <input type="checkbox" id="removeBgPreview" checked />
           Mostrar comparación antes / después
         </label>
-        <div class="hint">La primera ejecución puede tardar más por la descarga y caché del modelo.</div>
+        <p class="hint">⚠️ La primera ejecución puede tardar más por la descarga y caché del modelo (~45 MB).</p>
       </div>
     </section>
 
