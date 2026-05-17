@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Optimizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🖼️ Image Optimizer</h1>
+    <p>Optimiza logos, retratos y paisajes sin pérdida de calidad</p>
+  </header>
+
+  <main>
+    <!-- PASO 1: TIPO DE IMAGEN -->
+    <section class="card" id="step-type">
+      <h2>1. Tipo de imagen</h2>
+      <div class="type-grid">
+        <button class="type-btn active" data-type="logo">
+          <span class="icon">🔷</span>
+          <strong>Logo</strong>
+          <small>SVG optimizado + Base64</small>
+        </button>
+        <button class="type-btn" data-type="retrato">
+          <span class="icon">👤</span>
+          <strong>Retrato</strong>
+          <small>AVIF / WebP alta fidelidad</small>
+        </button>
+        <button class="type-btn" data-type="paisaje">
+          <span class="icon">🏔️</span>
+          <strong>Paisaje</strong>
+          <small>AVIF responsive + blur placeholder</small>
+        </button>
+      </div>
+    </section>
+
+    <!-- PASO 2: SUBIR IMAGEN -->
+    <section class="card" id="step-upload">
+      <h2>2. Sube tu imagen</h2>
+      <div class="drop-zone" id="dropZone">
+        <span class="drop-icon">📂</span>
+        <p>Arrastra aquí o <label for="fileInput" class="link">selecciona un archivo</label></p>
+        <p class="hint" id="formatHint">SVG, PNG, JPG, WebP — máx. 20 MB</p>
+        <input type="file" id="fileInput" accept="image/*,.svg" hidden />
+      </div>
+      <div class="preview-wrap" id="previewWrap" hidden>
+        <img id="previewImg" alt="Vista previa" />
+        <div class="file-meta" id="fileMeta"></div>
+      </div>
+    </section>
+
+    <!-- PASO 3: OPCIONES -->
+    <section class="card" id="step-options">
+      <h2>3. Opciones de conversión</h2>
+      <div id="optionsLogo" class="options-panel">
+        <label>Salida:
+          <select id="logoOutput">
+            <option value="svg-min">SVG minificado</option>
+            <option value="base64-svg">SVG → Base64 Data URI</option>
+            <option value="base64-png">PNG → Base64 Data URI</option>
+          </select>
+        </label>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="logoInline" checked />
+          Generar código HTML inline
+        </label>
+      </div>
+      <div id="optionsRetrato" class="options-panel" hidden>
+        <label>Formato de salida:
+          <select id="retratoFormat">
+            <option value="webp">WebP</option>
+            <option value="jpeg">JPEG optimizado</option>
+          </select>
+        </label>
+        <label>Calidad: <span id="retratoQualityVal">82</span>%
+          <input type="range" id="retratoQuality" min="60" max="100" value="82" />
+        </label>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="retratoBase64" />
+          También generar Base64 Data URI
+        </label>
+      </div>
+      <div id="optionsPaisaje" class="options-panel" hidden>
+        <label>Formato de salida:
+          <select id="paisajeFormat">
+            <option value="webp">WebP</option>
+            <option value="jpeg">JPEG optimizado</option>
+          </select>
+        </label>
+        <label>Calidad: <span id="paisajeQualityVal">80</span>%
+          <input type="range" id="paisajeQuality" min="50" max="100" value="80" />
+        </label>
+        <label>Ancho máximo (px):
+          <input type="number" id="paisajeMaxWidth" value="1920" min="400" max="4000" step="100" />
+        </label>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="paisajePlaceholder" checked />
+          Generar placeholder Base64 (blur-up, 20px)
+        </label>
+      </div>
+    </section>
+
+    <!-- PASO 4: CONVERTIR -->
+    <section class="card" id="step-convert">
+      <h2>4. Convertir</h2>
+      <button class="btn-primary" id="convertBtn" disabled>⚡ Convertir imagen</button>
+      <div class="progress-wrap" id="progressWrap" hidden>
+        <div class="progress-bar" id="progressBar"></div>
+        <span id="progressText">Procesando...</span>
+      </div>
+    </section>
+
+    <!-- PASO 5: RESULTADOS -->
+    <section class="card" id="step-results" hidden>
+      <h2>5. Resultados</h2>
+      <div class="results-grid" id="resultsGrid"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Image Optimizer · Sin servidor · Todo en el navegador · <a href="https://github.com/zzever/image-optimizer" target="_blank">GitHub</a></p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
