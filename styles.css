@@ -24,7 +24,6 @@ body {
   line-height: 1.6;
 }
 
-/* ===== HEADER ===== */
 header {
   text-align: center;
   padding: 2.5rem 1rem 1.5rem;
@@ -34,7 +33,6 @@ header {
 header h1 { font-size: 2rem; font-weight: 700; margin-bottom: .3rem; }
 header p { color: var(--text-muted); font-size: .95rem; }
 
-/* ===== MAIN LAYOUT ===== */
 main {
   max-width: 860px;
   margin: 2rem auto;
@@ -44,7 +42,6 @@ main {
   gap: 1.25rem;
 }
 
-/* ===== CARDS ===== */
 .card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -61,12 +58,12 @@ main {
   letter-spacing: .06em;
 }
 
-/* ===== TYPE GRID ===== */
 .type-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: .75rem;
 }
+.type-grid.four-cols { grid-template-columns: repeat(4, 1fr); }
 .type-btn {
   background: var(--surface2);
   border: 2px solid var(--border);
@@ -86,7 +83,6 @@ main {
 .type-btn strong { font-size: .9rem; }
 .type-btn small { font-size: .75rem; color: var(--text-muted); text-align: center; }
 
-/* ===== DROP ZONE ===== */
 .drop-zone {
   border: 2px dashed var(--border);
   border-radius: var(--radius);
@@ -107,7 +103,6 @@ main {
 .link { color: var(--accent); cursor: pointer; text-decoration: underline; }
 .hint { font-size: .8rem; color: var(--text-muted); }
 
-/* ===== PREVIEW ===== */
 .preview-wrap {
   margin-top: 1rem;
   display: flex;
@@ -142,7 +137,6 @@ main {
   font-weight: 600;
 }
 
-/* ===== OPTIONS ===== */
 .options-panel {
   display: flex;
   flex-direction: column;
@@ -173,7 +167,6 @@ main {
 .toggle-wrap { flex-direction: row !important; align-items: center; gap: .5rem !important; }
 .toggle-wrap input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; }
 
-/* ===== CONVERT BUTTON ===== */
 .btn-primary {
   background: var(--accent);
   color: #fff;
@@ -189,7 +182,6 @@ main {
 .btn-primary:hover:not(:disabled) { background: #7c75ff; transform: translateY(-1px); }
 .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
 
-/* ===== PROGRESS ===== */
 .progress-wrap {
   margin-top: 1rem;
   display: flex;
@@ -212,7 +204,6 @@ main {
 }
 #progressText { font-size: .85rem; color: var(--text-muted); }
 
-/* ===== RESULTS ===== */
 .results-grid {
   display: flex;
   flex-direction: column;
@@ -234,8 +225,22 @@ main {
   border-radius: 6px;
   border: 1px solid var(--border);
   object-fit: contain;
-  background: checkerboard;
   background: repeating-conic-gradient(#333 0% 25%, #444 0% 50%) 0 0/16px 16px;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 180px));
+  gap: .75rem;
+  align-items: start;
+}
+.compare-card {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.compare-card span {
+  font-size: .75rem;
+  color: var(--text-muted);
 }
 .result-info { flex: 1; display: flex; flex-direction: column; gap: .4rem; }
 .result-info h3 { font-size: .9rem; font-weight: 600; }
@@ -255,8 +260,6 @@ main {
 }
 .btn-sm:hover { border-color: var(--accent); color: var(--accent); }
 .btn-sm.primary { border-color: var(--accent); color: var(--accent); }
-
-/* ===== CODE BLOCK ===== */
 .code-block {
   background: #0d0f1a;
   border: 1px solid var(--border);
@@ -272,8 +275,6 @@ main {
   overflow-y: auto;
   display: none;
 }
-
-/* ===== FOOTER ===== */
 footer {
   text-align: center;
   padding: 2rem 1rem;
@@ -284,9 +285,12 @@ footer {
 }
 footer a { color: var(--accent); text-decoration: none; }
 
-/* ===== RESPONSIVE ===== */
+@media (max-width: 800px) {
+  .type-grid.four-cols { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 600px) {
-  .type-grid { grid-template-columns: 1fr; }
+  .type-grid, .type-grid.four-cols { grid-template-columns: 1fr; }
   .preview-wrap { flex-direction: column; }
   .result-item { flex-direction: column; }
+  .compare-row { grid-template-columns: 1fr; }
 }

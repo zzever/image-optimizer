@@ -9,14 +9,13 @@
 <body>
   <header>
     <h1>🖼️ Image Optimizer</h1>
-    <p>Optimiza logos, retratos y paisajes sin pérdida de calidad</p>
+    <p>Optimiza logos, retratos, paisajes y elimina fondos en local</p>
   </header>
 
   <main>
-    <!-- PASO 1: TIPO DE IMAGEN -->
     <section class="card" id="step-type">
       <h2>1. Tipo de imagen</h2>
-      <div class="type-grid">
+      <div class="type-grid four-cols">
         <button class="type-btn active" data-type="logo">
           <span class="icon">🔷</span>
           <strong>Logo</strong>
@@ -25,17 +24,21 @@
         <button class="type-btn" data-type="retrato">
           <span class="icon">👤</span>
           <strong>Retrato</strong>
-          <small>AVIF / WebP alta fidelidad</small>
+          <small>WebP / JPEG alta fidelidad</small>
         </button>
         <button class="type-btn" data-type="paisaje">
           <span class="icon">🏔️</span>
           <strong>Paisaje</strong>
-          <small>AVIF responsive + blur placeholder</small>
+          <small>Responsive + blur placeholder</small>
+        </button>
+        <button class="type-btn" data-type="remove-bg">
+          <span class="icon">✂️</span>
+          <strong>Quitar fondo</strong>
+          <small>PNG transparente + Base64</small>
         </button>
       </div>
     </section>
 
-    <!-- PASO 2: SUBIR IMAGEN -->
     <section class="card" id="step-upload">
       <h2>2. Sube tu imagen</h2>
       <div class="drop-zone" id="dropZone">
@@ -50,7 +53,6 @@
       </div>
     </section>
 
-    <!-- PASO 3: OPCIONES -->
     <section class="card" id="step-options">
       <h2>3. Opciones de conversión</h2>
       <div id="optionsLogo" class="options-panel">
@@ -66,6 +68,7 @@
           Generar código HTML inline
         </label>
       </div>
+
       <div id="optionsRetrato" class="options-panel" hidden>
         <label>Formato de salida:
           <select id="retratoFormat">
@@ -81,6 +84,7 @@
           También generar Base64 Data URI
         </label>
       </div>
+
       <div id="optionsPaisaje" class="options-panel" hidden>
         <label>Formato de salida:
           <select id="paisajeFormat">
@@ -99,19 +103,31 @@
           Generar placeholder Base64 (blur-up, 20px)
         </label>
       </div>
+
+      <div id="optionsRemoveBg" class="options-panel" hidden>
+        <label>Salida:
+          <select id="removeBgOutput">
+            <option value="png">PNG transparente</option>
+            <option value="png-base64">PNG + Base64 Data URI</option>
+          </select>
+        </label>
+        <label class="toggle-wrap">
+          <input type="checkbox" id="removeBgPreview" checked />
+          Mostrar comparación antes / después
+        </label>
+        <div class="hint">La primera ejecución puede tardar más por la descarga y caché del modelo.</div>
+      </div>
     </section>
 
-    <!-- PASO 4: CONVERTIR -->
     <section class="card" id="step-convert">
       <h2>4. Convertir</h2>
-      <button class="btn-primary" id="convertBtn" disabled>⚡ Convertir imagen</button>
+      <button class="btn-primary" id="convertBtn" disabled>⚡ Procesar imagen</button>
       <div class="progress-wrap" id="progressWrap" hidden>
         <div class="progress-bar" id="progressBar"></div>
         <span id="progressText">Procesando...</span>
       </div>
     </section>
 
-    <!-- PASO 5: RESULTADOS -->
     <section class="card" id="step-results" hidden>
       <h2>5. Resultados</h2>
       <div class="results-grid" id="resultsGrid"></div>
@@ -122,6 +138,6 @@
     <p>Image Optimizer · Sin servidor · Todo en el navegador · <a href="https://github.com/zzever/image-optimizer" target="_blank">GitHub</a></p>
   </footer>
 
-  <script src="app.js"></script>
+  <script type="module" src="app.js"></script>
 </body>
 </html>
