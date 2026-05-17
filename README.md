@@ -15,9 +15,3 @@ Web app para optimizar imágenes según su tipo:
 ## Uso
 
 Abre `index.html` directamente en el navegador o despliega en GitHub Pages.
-
-## Despliegue en GitHub Pages
-
-1. Ve a Settings → Pages
-2. Source: `main` branch, carpeta `/root`
-3. Guarda y accede a `https://zzever.github.io/image-optimizer`
