@@ -1,4 +1,4 @@
-# 🖼️ Image Optimizer
+Image Optimizer
 
 Web app para optimizar imágenes según su tipo:
 
